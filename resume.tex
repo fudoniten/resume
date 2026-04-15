@@ -33,9 +33,10 @@
 \cvitem{}{Software engineer with 10+ years of experience building and scaling distributed systems, developer platforms, and internal tools at Google, Apple, Amazon, and ByteDance. Skilled in backend architecture, data processing, and full-stack development. Passionate about building reliable, high-performance systems and tools.}
 
 \section{Technical Skills}
-\cvitem{Languages}{Java, C++, Go, Scala, Python, JavaScript, Clojure, Lisp, SQL, Erlang}
-\cvitem{Architecture}{Distributed systems, Kubernetes, REST APIs, data processing with Hadoop \& Spark, microservices}
-\cvitem{Infrastructure \& Tooling}{Kubernetes, Docker, NixOS, AWS, CI/CD pipelines, Linux \& Unix, encryption, profiling, database design \& optimization, benchmarking}
+\cvitem{Languages}{Java, C++, Go, Scala, Python, JavaScript, Clojure, Lisp, Ruby, SQL, Erlang}
+\cvitem{Databases}{PostgreSQL, MySQL, Oracle SQL, Amazon Redshift}
+\cvitem{Architecture}{Distributed systems, Kubernetes, REST APIs, data processing with Hadoop \& Spark, microservices, gRPC, Protocol Buffers}
+\\cvitem{Infrastructure \\& Tooling}{Kubernetes, Docker, NixOS, AWS, Flux, ArgoCD, Prometheus, Grafana, CI/CD pipelines, Linux \\& Unix, encryption, profiling, database design \\& optimization, benchmarking}
 
 \section{Experience}
 
@@ -55,7 +56,8 @@
         cycle from multiple weeks to a 24-hour release, increasing development
         velocity and service reliability.
       \item Created, modified and/or maintained various cloud services in Python
-        and Go.
+        and Go. Used ArgoCD for continuous deployment and GitOps-based infrastructure management.
+      \item Managed oncall responsibilities for large-scale production services. Used Prometheus and Grafana extensively for problem diagnosis, incident response, and service troubleshooting to minimize downtime and improve reliability.
     \end{itemize}
   }
 
@@ -80,7 +82,7 @@
         decisions. Reduced rollout risk and improved release velocity across a
         multi-team production environment.
       \item Collaborated with cross-functional teams to refactor core RTC
-        services to improve performance, scalability, and observability.
+        services to improve performance, scalability, and observability. Worked extensively with gRPC for service communication.
     \end{itemize}
   }
 
@@ -94,7 +96,7 @@
     \begin{itemize}
     \item Built internal web applications to support Apple Maps Transit, including an infinite-scrolling POI data editor, enabling faster data-entry workflows to accelerate the launch of Apple Transit.
     \item Designed features from the backend to the web UI, using a combination of PostgreSQL, Scala and JavaScript.
-    \item Designed data models and validation workflows enabling rapid editing and publishing of curated transit mapping data provided by on-site contractors.
+    \item Supported new features, batch changes, and optimized cronjobs using PostgreSQL. Designed data models and validation workflows enabling rapid editing and publishing of curated transit mapping data provided by on-site contractors. Optimized database queries and schemas for complex transit data relationships.
     \end{itemize}
   }
 
@@ -108,7 +110,7 @@
     \begin{itemize}
       \item Led the design and development of a large-scale financial reporting platform, generating daily company-wide fine-grained P\&L reports.
       \item Worked with users and stakeholders to gather requirements, pitch alternatives, and determine direction.
-      \item Designed and built data ingestion and aggregation services in Scala and SQL, among the first at Amazon to leverage AWS Redshift.
+      \item Designed and built ETL data ingestion and aggregation services in Scala and SQL, among the first at Amazon to leverage AWS Redshift. Worked with Ruby and Clojure for various internal tools and infrastructure.
       \item Bootstrapped a new engineering team, assisted with roadmap and goals, and took a leading role in architecture and technology-stack design.
       \item Developed an interactive query service in Scala to enable richer interaction with financial data, allowing users without a SQL background to perform deeper analysis of daily reporting data.
       \item Launched AWS cloud-native platform service for company-wide use within Amazon.
@@ -124,7 +126,7 @@
   {
     \begin{itemize}
     \item Engineered distributed ETL pipelines (Hadoop and SQL) producing daily financial and operational metrics at a per-shipment level across Amazon's global business.
-    \item Designed and implemented algorithms to allocate and reconcile diverse costs and revenue components, including liquidations, returns, shipping, and promotions, to individual shipments.
+    \item Designed and implemented algorithms to allocate and reconcile diverse costs and revenue components, including liquidations, returns, shipping, and promotions, to individual shipments. Used Oracle SQL and later Amazon Redshift for large-scale data processing.
     \item Partnered with finance and operations stakeholders to define heuristics, validate financial correctness, and integrate results into a company-wide reporting system used throughout Amazon to drive day-to-day business decisions.
     \item Extended data coverage to new geographies and business domains, including FBA and 3P. Launched the data-processing pipeline for Amazon China.
     \end{itemize}
