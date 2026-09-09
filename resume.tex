@@ -1,13 +1,20 @@
 \documentclass[11pt,letterpaper,sans]{moderncv}
 
 % moderncv styles: casual, classic, banking, oldstyle, fancy
-\moderncvstyle{classic}
+% Order matters: the style file snapshots the active theme colour with
+% \colorlet, so \moderncvcolor must be set first or the section headings
+% and rules silently fall back to black.
 \moderncvcolor{blue}
+\moderncvstyle{classic}
 
 % Page geometry
 \usepackage[scale=0.9]{geometry}
 
 % Encoding / typography
+% lmodern must come before fontenc: it swaps bitmap Computer Modern for the
+% scalable Type 1 Latin Modern faces, which microtype's font expansion
+% requires and which keep the PDF crisp and text-selectable.
+\usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{ragged2e}
 \usepackage{etoolbox}
@@ -36,7 +43,7 @@
 \cvitem{Languages}{Java, C++, Go, Scala, Python, JavaScript, Clojure, Lisp, Ruby, SQL, Erlang}
 \cvitem{Databases}{PostgreSQL, MySQL, Oracle SQL, Amazon Redshift}
 \cvitem{Architecture}{Distributed systems, Kubernetes, REST APIs, data processing with Hadoop \& Spark, microservices, gRPC, Protocol Buffers}
-\\cvitem{Infrastructure \\& Tooling}{Kubernetes, Docker, NixOS, AWS, Flux, ArgoCD, Prometheus, Grafana, CI/CD pipelines, Linux \\& Unix, encryption, profiling, database design \\& optimization, benchmarking}
+\cvitem{Infrastructure \& Tooling}{Kubernetes, Docker, NixOS, AWS, Flux, ArgoCD, Prometheus, Grafana, CI/CD pipelines, Linux \& Unix, encryption, profiling, database design \& optimization, benchmarking}
 
 \section{Experience}
 
