@@ -19,6 +19,18 @@
 \usepackage{ragged2e}
 \usepackage{etoolbox}
 
+% moderncv typesets \cventry's description inside a tabular and a minipage,
+% neither of which can split across a page boundary. A long entry therefore
+% jumps wholesale to the next page and leaves a gap behind it. \cvjob emits
+% only the header row and \cvbullet emits each bullet as its own row (moderncv's
+% own \cvlistitem), so LaTeX can break between bullets instead. \nopagebreak
+% keeps a header from being stranded alone at the foot of a page.
+\newcommand{\cvjob}[4]{\cventry{#1}{#2}{#3}{#4}{}{}\nopagebreak}
+% \small matches the size \cventry applies to its description block, and
+% \RaggedRight keeps the narrow main column from developing rivers of
+% whitespace the way full justification does.
+\newcommand{\cvbullet}[1]{\cvlistitem[.1em]{\small\RaggedRight #1}}
+
 % Reduce blocky justification in bullet lists
 \AtBeginEnvironment{itemize}{\RaggedRight}
 \hyphenpenalty=7000
@@ -28,7 +40,7 @@
 
 % Personal data
 \name{Peter}{Selby}
-\address{8329 129th Pl SE}{Newcastle, WA}{}
+\address{Newcastle, WA}{}{}
 \phone[mobile]{(805)~604~5298}
 \email{peter@selby.ca}
 
@@ -37,107 +49,115 @@
 \pagestyle{empty}
 
 \section{Summary}
-\cvitem{}{Software engineer with 10+ years of experience building and scaling distributed systems, developer platforms, and internal tools at Google, Apple, Amazon, and ByteDance. Skilled in backend architecture, data processing, and full-stack development. Passionate about building reliable, high-performance systems and tools.}
+\cvitem{}{Site reliability engineer with over a decade of experience running large-scale distributed systems at Google, ByteDance, Apple, and Amazon. Specializes in safe, automated release engineering---progressive rollouts, canarying, and live configuration management for fleets serving 100M+ users---on a foundation of cloud infrastructure and large-scale data processing.}
 
 \section{Technical Skills}
-\cvitem{Languages}{Java, C++, Go, Scala, Python, JavaScript, Clojure, Lisp, Ruby, SQL, Erlang}
-\cvitem{Databases}{PostgreSQL, MySQL, Oracle SQL, Amazon Redshift}
-\cvitem{Architecture}{Distributed systems, Kubernetes, REST APIs, data processing with Hadoop \& Spark, microservices, gRPC, Protocol Buffers}
-\cvitem{Infrastructure \& Tooling}{Kubernetes, Docker, NixOS, AWS, Flux, ArgoCD, Prometheus, Grafana, CI/CD pipelines, Linux \& Unix, encryption, profiling, database design \& optimization, benchmarking}
+\cvitem{Languages}{Go, Python, Java, Scala, C++, Clojure, SQL, JavaScript}
+\cvitem{Cloud \& Infrastructure}{Kubernetes, Docker, AWS and comparable internal cloud platforms at Google and ByteDance; S3 and object storage, Lambda and equivalent serverless runtimes, DynamoDB, Redis, managed PostgreSQL, service authentication, capacity planning}
+\cvitem{Data}{Data warehousing and ETL, Hadoop, Spark, Amazon Redshift, PostgreSQL, MySQL, Oracle SQL; schema design, query optimization, benchmarking}
+\cvitem{Reliability \& Delivery}{Production oncall and incident response, Prometheus, Grafana, progressive rollouts and canarying, ArgoCD, Flux, GitOps, CI/CD pipelines}
+\cvitem{Architecture}{Distributed systems, microservices, gRPC, Protocol Buffers, REST APIs, Linux \& Unix, NixOS, encryption, profiling}
 
 \section{Experience}
 
 \cventry
-  {2023--2025}
-  {Site Reliability Engineer}
-  {ByteDance Inc}
-  {Bellevue, WA}
+  {2025--Present}
+  {Career Break}
+  {}
+  {}
   {}
   {
-    \begin{itemize}
-      \item Worked on real-time communication (RTC) infrastructure for
-        large-scale live streaming.
-      \item Designed and implemented a distributed rolling upgrade system for
-        worldwide RTC media ingress nodes, enabling safe and automated fleet
-        upgrades with minimal redundancy or capacity loss. Reduced deployment
-        cycle from multiple weeks to a 24-hour release, increasing development
-        velocity and service reliability.
-      \item Created, modified and/or maintained various cloud services in Python
-        and Go. Used ArgoCD for continuous deployment and GitOps-based infrastructure management.
-      \item Managed oncall responsibilities for large-scale production services. Used Prometheus and Grafana extensively for problem diagnosis, incident response, and service troubleshooting to minimize downtime and improve reliability.
-    \end{itemize}
+    Primary caregiver for my son while my wife supported her father through a
+    serious illness overseas. Actively seeking my next role.
   }
 
-\cventry
-  {2016--2021}
-  {Site Reliability Engineer}
-  {Google Inc}
-  {Kirkland, WA}
-  {}
-  {
-    \begin{itemize}
-      \item Integrated complex service configurations with Google's internal
-        configuration management platform, rewriting multiple RTC services
-        (including telephony, chat, and video) to safely consume, validate,
-        apply, and monitor live configuration updates. Supported canaries, A/B
-        testing, and automated rollbacks. Partnered with 5+ development teams to
-        standardize configuration logic and ensure consistent behavior across
-        heterogeneous systems serving 100M+ users.
-      \item Redesigned and replaced the cloud rollout system for 20+ RTC
-        services, implementing multi-stage canarying, key-metric monitoring, and
-        automated regression analysis, enabling data-driven rollout and rollback
-        decisions. Reduced rollout risk and improved release velocity across a
-        multi-team production environment.
-      \item Collaborated with cross-functional teams to refactor core RTC
-        services to improve performance, scalability, and observability. Worked extensively with gRPC for service communication.
-    \end{itemize}
-  }
+\cvjob{2023--2025}{Site Reliability Engineer}{ByteDance Inc}{Bellevue, WA}
+\cvbullet{Operated and evolved real-time communication (RTC) infrastructure for
+  large-scale live streaming, running on Kubernetes across AWS and ByteDance's
+  internal cloud platform.}
+\cvbullet{Designed and implemented a distributed rolling upgrade system for
+  worldwide RTC media ingress nodes, enabling safe and automated fleet upgrades
+  with minimal redundancy or capacity loss. Reduced deployment cycle from
+  multiple weeks to a 24-hour release, increasing development velocity and
+  service reliability.}
+\cvbullet{Built and operated cloud services in Go and Python, using ArgoCD and
+  Flux for GitOps-based continuous deployment. Worked directly with managed
+  cloud primitives: object storage, serverless functions, DynamoDB, Redis, and
+  managed PostgreSQL.}
+\cvbullet{Held production oncall for large-scale services, using Prometheus and
+  Grafana extensively for problem diagnosis, incident response, and
+  troubleshooting to minimize downtime and improve reliability.}
 
 \cventry
-  {2015--2016}
-  {Full Stack Engineer}
-  {Apple Inc}
-  {Cupertino, CA (Remote)}
+  {2021--2023}
+  {Career Break}
+  {}
+  {}
   {}
   {
-    \begin{itemize}
-    \item Built internal web applications to support Apple Maps Transit, including an infinite-scrolling POI data editor, enabling faster data-entry workflows to accelerate the launch of Apple Transit.
-    \item Designed features from the backend to the web UI, using a combination of PostgreSQL, Scala and JavaScript.
-    \item Supported new features, batch changes, and optimized cronjobs using PostgreSQL. Designed data models and validation workflows enabling rapid editing and publishing of curated transit mapping data provided by on-site contractors. Optimized database queries and schemas for complex transit data relationships.
-    \end{itemize}
+    Deliberate break after five years at Google, spent travelling and with
+    family before returning to full-time work.
   }
 
-\cventry
-  {2013--2015}
-  {SDE II / Technical Program Manager}
-  {Amazon.com}
-  {Seattle, WA}
-  {}
-  {
-    \begin{itemize}
-      \item Led the design and development of a large-scale financial reporting platform, generating daily company-wide fine-grained P\&L reports.
-      \item Worked with users and stakeholders to gather requirements, pitch alternatives, and determine direction.
-      \item Designed and built ETL data ingestion and aggregation services in Scala and SQL, among the first at Amazon to leverage AWS Redshift. Worked with Ruby and Clojure for various internal tools and infrastructure.
-      \item Bootstrapped a new engineering team, assisted with roadmap and goals, and took a leading role in architecture and technology-stack design.
-      \item Developed an interactive query service in Scala to enable richer interaction with financial data, allowing users without a SQL background to perform deeper analysis of daily reporting data.
-      \item Launched AWS cloud-native platform service for company-wide use within Amazon.
-    \end{itemize}
-  }
+\cvjob{2016--2021}{Site Reliability Engineer}{Google Inc}{Kirkland, WA}
+\cvbullet{Integrated complex service configurations with Google's internal
+  configuration management platform, rewriting multiple RTC services (including
+  telephony, chat, and video) to safely consume, validate, apply, and monitor
+  live configuration updates. Supported canaries, A/B testing, and automated
+  rollbacks. Partnered with 5+ development teams to standardize configuration
+  logic and ensure consistent behavior across heterogeneous systems serving
+  100M+ users.}
+\cvbullet{Redesigned and replaced the cloud rollout system for 20+ RTC services,
+  implementing multi-stage canarying, key-metric monitoring, and automated
+  regression analysis, enabling data-driven rollout and rollback decisions.
+  Reduced rollout risk and improved release velocity across a multi-team
+  production environment.}
+\cvbullet{Ran services on Google's internal container orchestration and cloud
+  platform---the direct ancestor of Kubernetes---covering capacity planning,
+  service authentication, and internal equivalents of managed storage, queueing,
+  and database offerings.}
+\cvbullet{Collaborated with cross-functional teams to refactor core RTC services
+  for performance, scalability, and observability, working extensively with gRPC
+  for service communication.}
 
-\cventry
-  {2011--2013}
-  {Software Development Engineer I \& II}
-  {Amazon.com}
-  {Seattle, WA}
-  {}
-  {
-    \begin{itemize}
-    \item Engineered distributed ETL pipelines (Hadoop and SQL) producing daily financial and operational metrics at a per-shipment level across Amazon's global business.
-    \item Designed and implemented algorithms to allocate and reconcile diverse costs and revenue components, including liquidations, returns, shipping, and promotions, to individual shipments. Used Oracle SQL and later Amazon Redshift for large-scale data processing.
-    \item Partnered with finance and operations stakeholders to define heuristics, validate financial correctness, and integrate results into a company-wide reporting system used throughout Amazon to drive day-to-day business decisions.
-    \item Extended data coverage to new geographies and business domains, including FBA and 3P. Launched the data-processing pipeline for Amazon China.
-    \end{itemize}
-  }
+\cvjob{2015--2016}{Full Stack Engineer}{Apple Inc}{Cupertino, CA (Remote)}
+\cvbullet{Built internal web applications supporting Apple Maps Transit,
+  including an infinite-scrolling POI data editor that accelerated data-entry
+  workflows ahead of the Apple Transit launch.}
+\cvbullet{Designed features end to end, from PostgreSQL schema through Scala
+  services to the JavaScript UI.}
+\cvbullet{Designed data models and validation workflows enabling rapid editing
+  and publishing of curated transit data produced by on-site contractors.
+  Optimized queries, schemas, and batch jobs for complex transit data
+  relationships.}
+
+\cvjob{2013--2015}{SDE II / Technical Program Manager}{Amazon.com}{Seattle, WA}
+\cvbullet{Led the design and development of a large-scale financial reporting
+  platform generating daily, company-wide, fine-grained P\&L reports. Worked
+  with users and stakeholders to gather requirements, pitch alternatives, and
+  determine direction.}
+\cvbullet{Designed and built ETL ingestion and aggregation services in Scala and
+  SQL against a cloud data warehouse, among the first at Amazon to adopt AWS
+  Redshift.}
+\cvbullet{Developed an interactive query service in Scala enabling users without
+  a SQL background to perform deeper analysis of daily reporting data.}
+\cvbullet{Bootstrapped a new engineering team, shaping roadmap, architecture,
+  and technology-stack decisions, and launched the platform as an AWS
+  cloud-native service for company-wide use.}
+
+\cvjob{2011--2013}{Software Development Engineer I \& II}{Amazon.com}{Seattle, WA}
+\cvbullet{Engineered distributed ETL pipelines in Hadoop and SQL producing daily
+  financial and operational metrics at per-shipment granularity across Amazon's
+  global business.}
+\cvbullet{Designed and implemented algorithms to allocate and reconcile diverse
+  costs and revenue components---liquidations, returns, shipping, and
+  promotions---to individual shipments, using Oracle SQL and later Amazon
+  Redshift. Partnered with finance and operations stakeholders to define
+  heuristics and validate financial correctness for a reporting system used
+  company-wide to drive day-to-day business decisions.}
+\cvbullet{Extended data coverage to new geographies and business domains,
+  including FBA and 3P, and launched the data-processing pipeline for Amazon
+  China.}
 
 \section{Education}
 
@@ -148,7 +168,9 @@
   {Vancouver, BC}
   {}
   {
-    Focus areas included Distributed Systems, Operating Systems, Cloud Computing, Multi-Agent Systems, and Game Theory. Selected projects included building two variants of a peer-to-peer distributed filesystem (directory-server and DHT-based) exploring metadata scalability, and implementing a proof-of-concept alternative to object-oriented programming in Lisp where objects emerged dynamically via pattern matching.
+    Focus areas: distributed systems, operating systems, and cloud computing.
+    Selected project: two variants of a peer-to-peer distributed filesystem
+    (directory-server and DHT-based) exploring metadata scalability.
   }
 
 \cventry
