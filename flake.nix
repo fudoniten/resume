@@ -16,6 +16,7 @@
         etoolbox
         geometry
         lm
+        needspace
       ]);
 
       resumeFor = pkgs: pkgs.stdenvNoCC.mkDerivation {

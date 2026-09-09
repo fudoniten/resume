@@ -18,14 +18,25 @@
 \usepackage[T1]{fontenc}
 \usepackage{ragged2e}
 \usepackage{etoolbox}
+\usepackage{needspace}
 
 % moderncv typesets \cventry's description inside a tabular and a minipage,
 % neither of which can split across a page boundary. A long entry therefore
 % jumps wholesale to the next page and leaves a gap behind it. \cvjob emits
 % only the header row and \cvbullet emits each bullet as its own row (moderncv's
-% own \cvlistitem), so LaTeX can break between bullets instead. \nopagebreak
-% keeps a header from being stranded alone at the foot of a page.
-\newcommand{\cvjob}[4]{\cventry{#1}{#2}{#3}{#4}{}{}\nopagebreak}
+% own \cvlistitem), so LaTeX can break between bullets instead.
+%
+% \cvitem ends each row with \par\addvspace, which leaves a legal breakpoint
+% directly after a header, so \nopagebreak cannot stop a header being stranded
+% at the foot of a page: the break is taken at the glue before the penalty.
+% \Needspace* reserves room for the header plus a few lines of bullet and moves
+% the whole group to the next page when that does not fit. It must be the
+% starred form -- moderncv sets \raggedbottom (moderncv.cls), and plain
+% \needspace's stretchy-glue trick misfires there, breaking the page early and
+% leaving a large gap regardless of how much room actually remains.
+\newcommand{\cvjob}[4]{%
+  \Needspace*{5\baselineskip}%
+  \cventry{#1}{#2}{#3}{#4}{}{}}
 % \small matches the size \cventry applies to its description block, and
 % \RaggedRight keeps the narrow main column from developing rivers of
 % whitespace the way full justification does.
@@ -40,6 +51,7 @@
 
 % Personal data
 \name{Peter}{Selby}
+\title{Software Engineer}
 \address{Newcastle, WA}{}{}
 \phone[mobile]{(805)~604~5298}
 \email{peter@selby.ca}
@@ -49,14 +61,14 @@
 \pagestyle{empty}
 
 \section{Summary}
-\cvitem{}{Site reliability engineer with over a decade of experience running large-scale distributed systems at Google, ByteDance, Apple, and Amazon. Specializes in safe, automated release engineering---progressive rollouts, canarying, and live configuration management for fleets serving 100M+ users---on a foundation of cloud infrastructure and large-scale data processing.}
+\cvitem{}{Software engineer with over a decade of experience designing and building large-scale distributed systems at Google, ByteDance, Apple, and Amazon. Built a shipment-level financial data warehouse and the service layer over it at Amazon, and the automated rollout systems that safely ship real-time communication services to 100M+ users at Google. Strongest in backend and data-intensive systems, and a long-time Clojure and Lisp enthusiast.}
 
 \section{Technical Skills}
-\cvitem{Languages}{Go, Python, Java, Scala, C++, Clojure, SQL, JavaScript}
-\cvitem{Cloud \& Infrastructure}{Kubernetes, Docker, AWS and comparable internal cloud platforms at Google and ByteDance; S3 and object storage, Lambda and equivalent serverless runtimes, DynamoDB, Redis, managed PostgreSQL, service authentication, capacity planning}
-\cvitem{Data}{Data warehousing and ETL, Hadoop, Spark, Amazon Redshift, PostgreSQL, MySQL, Oracle SQL; schema design, query optimization, benchmarking}
-\cvitem{Reliability \& Delivery}{Production oncall and incident response, Prometheus, Grafana, progressive rollouts and canarying, ArgoCD, Flux, GitOps, CI/CD pipelines}
-\cvitem{Architecture}{Distributed systems, microservices, gRPC, Protocol Buffers, REST APIs, Linux \& Unix, NixOS, encryption, profiling}
+\cvitem{Languages}{Go, Scala, Python, Java, C++, Clojure, Lisp, SQL, JavaScript}
+\cvitem{Backend \& Systems}{Service and API design, microservices, gRPC, Protocol Buffers, REST, concurrency, profiling, encryption, Linux \& Unix, NixOS}
+\cvitem{Data}{Data warehouse design, distributed ETL, Hadoop, Spark, Amazon Redshift, PostgreSQL, MySQL, Oracle SQL; schema design, query optimization, benchmarking}
+\cvitem{Cloud \& Infrastructure}{Kubernetes, Docker, AWS and comparable internal cloud platforms at Google and ByteDance; S3 and object storage, Lambda and equivalent serverless runtimes, DynamoDB, Redis, managed PostgreSQL, service authentication}
+\cvitem{Delivery \& Operations}{CI/CD pipelines, ArgoCD, Flux, GitOps, progressive rollouts and canarying, Prometheus, Grafana, production oncall and incident response}
 
 \section{Experience}
 
@@ -84,9 +96,10 @@
   Flux for GitOps-based continuous deployment. Worked directly with managed
   cloud primitives: object storage, serverless functions, DynamoDB, Redis, and
   managed PostgreSQL.}
-\cvbullet{Held production oncall for large-scale services, using Prometheus and
-  Grafana extensively for problem diagnosis, incident response, and
-  troubleshooting to minimize downtime and improve reliability.}
+\cvbullet{Carried production oncall for large-scale distributed services here
+  and in previous roles, diagnosing and resolving live failures with Prometheus
+  and Grafana---debugging experience that informs how I design and instrument
+  the systems I build.}
 
 \cventry
   {2021--2023}
@@ -95,16 +108,15 @@
   {}
   {}
   {
-    Deliberate break after five years at Google, spent travelling and with
-    family before returning to full-time work.
+    Extended travel and time with family following five years at Google.
   }
 
 \cvjob{2016--2021}{Site Reliability Engineer}{Google Inc}{Kirkland, WA}
-\cvbullet{Integrated complex service configurations with Google's internal
-  configuration management platform, rewriting multiple RTC services (including
-  telephony, chat, and video) to safely consume, validate, apply, and monitor
-  live configuration updates. Supported canaries, A/B testing, and automated
-  rollbacks. Partnered with 5+ development teams to standardize configuration
+\cvbullet{Rewrote multiple RTC services---telephony, chat, and video---to
+  safely consume, validate, apply, and monitor live configuration updates from
+  Google's internal configuration management platform, with support for
+  canaries, A/B testing, and automated rollbacks.}
+\cvbullet{Partnered with 5+ development teams to standardize that configuration
   logic and ensure consistent behavior across heterogeneous systems serving
   100M+ users.}
 \cvbullet{Redesigned and replaced the cloud rollout system for 20+ RTC services,
@@ -112,10 +124,10 @@
   regression analysis, enabling data-driven rollout and rollback decisions.
   Reduced rollout risk and improved release velocity across a multi-team
   production environment.}
-\cvbullet{Ran services on Google's internal container orchestration and cloud
-  platform---the direct ancestor of Kubernetes---covering capacity planning,
-  service authentication, and internal equivalents of managed storage, queueing,
-  and database offerings.}
+\cvbullet{Built and ran services on Google's internal container orchestration
+  and cloud platform---the direct ancestor of Kubernetes---working with its
+  equivalents of managed storage, queueing, and database offerings, service
+  authentication, and capacity planning.}
 \cvbullet{Collaborated with cross-functional teams to refactor core RTC services
   for performance, scalability, and observability, working extensively with gRPC
   for service communication.}
@@ -132,29 +144,30 @@
   relationships.}
 
 \cvjob{2013--2015}{SDE II / Technical Program Manager}{Amazon.com}{Seattle, WA}
-\cvbullet{Led the design and development of a large-scale financial reporting
-  platform generating daily, company-wide, fine-grained P\&L reports. Worked
-  with users and stakeholders to gather requirements, pitch alternatives, and
-  determine direction.}
-\cvbullet{Designed and built ETL ingestion and aggregation services in Scala and
-  SQL against a cloud data warehouse, among the first at Amazon to adopt AWS
-  Redshift.}
+\cvbullet{Designed and built the serving layer over the shipment-level data
+  warehouse: a Scala service exposing fine-grained financial data to systems and
+  teams across Amazon, replacing ad-hoc direct queries against the warehouse.}
+\cvbullet{Led the design and development of a company-wide financial reporting
+  platform on top of that service, generating daily, fine-grained P\&L reports.
+  Gathered requirements from finance and operations stakeholders, pitched
+  alternatives, and set technical direction.}
 \cvbullet{Developed an interactive query service in Scala enabling users without
-  a SQL background to perform deeper analysis of daily reporting data.}
+  a SQL background to explore daily reporting data directly.}
 \cvbullet{Bootstrapped a new engineering team, shaping roadmap, architecture,
   and technology-stack decisions, and launched the platform as an AWS
-  cloud-native service for company-wide use.}
+  cloud-native service---among the first at Amazon to adopt Redshift.}
 
 \cvjob{2011--2013}{Software Development Engineer I \& II}{Amazon.com}{Seattle, WA}
-\cvbullet{Engineered distributed ETL pipelines in Hadoop and SQL producing daily
-  financial and operational metrics at per-shipment granularity across Amazon's
-  global business.}
-\cvbullet{Designed and implemented algorithms to allocate and reconcile diverse
-  costs and revenue components---liquidations, returns, shipping, and
-  promotions---to individual shipments, using Oracle SQL and later Amazon
-  Redshift. Partnered with finance and operations stakeholders to define
-  heuristics and validate financial correctness for a reporting system used
-  company-wide to drive day-to-day business decisions.}
+\cvbullet{Built a shipment-level financial data warehouse from the ground up,
+  extracting from Amazon's Oracle transactional systems and transforming
+  heterogeneous business data into a single per-shipment view through
+  distributed ETL pipelines in Hadoop and SQL.}
+\cvbullet{Designed and implemented the allocation and reconciliation algorithms
+  at its core, attributing diverse cost and revenue components---liquidations,
+  returns, shipping, and promotions---to individual shipments. Partnered with
+  finance and operations stakeholders to define heuristics and validate
+  financial correctness for a system used company-wide to drive day-to-day
+  business decisions.}
 \cvbullet{Extended data coverage to new geographies and business domains,
   including FBA and 3P, and launched the data-processing pipeline for Amazon
   China.}
@@ -169,8 +182,10 @@
   {}
   {
     Focus areas: distributed systems, operating systems, and cloud computing.
-    Selected project: two variants of a peer-to-peer distributed filesystem
-    (directory-server and DHT-based) exploring metadata scalability.
+    Selected projects: two variants of a peer-to-peer distributed filesystem
+    (directory-server and DHT-based) exploring metadata scalability, and a
+    proof-of-concept alternative to object-oriented programming in Lisp, in
+    which objects emerged dynamically via pattern matching.
   }
 
 \cventry
