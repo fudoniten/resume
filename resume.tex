@@ -61,13 +61,13 @@
 \pagestyle{empty}
 
 \section{Summary}
-\cvitem{}{Software engineer with over a decade of experience designing and building large-scale distributed systems at Google, ByteDance, Apple, and Amazon. Built a shipment-level financial data warehouse and the service layer over it at Amazon, and the automated rollout systems that safely ship real-time communication services to 100M+ users at Google. Strongest in backend and data-intensive systems, and a long-time Clojure and Lisp enthusiast.}
+\cvitem{}{Software engineer with over a decade of experience designing and building large-scale distributed systems at Google, ByteDance, Apple, and Amazon. Built the ingestion pipelines and reporting platform behind Amazon's shipment-level retail P\&L, and the automated rollout systems that safely ship real-time communication services to 100M+ users at Google. Strongest in backend and data-intensive systems.}
 
 \section{Technical Skills}
 \cvitem{Languages}{Go, Scala, Python, Java, C++, Clojure, Lisp, SQL, JavaScript}
 \cvitem{Backend \& Systems}{Service and API design, microservices, gRPC, Protocol Buffers, REST, concurrency, profiling, encryption, Linux \& Unix, NixOS}
 \cvitem{Data}{Data warehouse design, distributed ETL, Hadoop, Spark, Amazon Redshift, PostgreSQL, MySQL, Oracle SQL; schema design, query optimization, benchmarking}
-\cvitem{Cloud \& Infrastructure}{Kubernetes, Docker, AWS and comparable internal cloud platforms at Google and ByteDance; S3 and object storage, Lambda and equivalent serverless runtimes, DynamoDB, Redis, managed PostgreSQL, service authentication}
+\cvitem{Cloud \& Infrastructure}{Kubernetes, Docker, AWS and comparable internal cloud platforms at Google and ByteDance; S3 and object storage, Lambda and equivalent serverless runtimes, DynamoDB, Redis, managed PostgreSQL}
 \cvitem{Delivery \& Operations}{CI/CD pipelines, ArgoCD, Flux, GitOps, progressive rollouts and canarying, Prometheus, Grafana, production oncall and incident response}
 
 \section{Experience}
@@ -94,8 +94,8 @@
   service reliability.}
 \cvbullet{Built and operated cloud services in Go and Python, using ArgoCD and
   Flux for GitOps-based continuous deployment. Worked directly with managed
-  cloud primitives: object storage, serverless functions, DynamoDB, Redis, and
-  managed PostgreSQL.}
+  cloud primitives: object storage, serverless functions, Redis, and managed
+  PostgreSQL.}
 \cvbullet{Carried production oncall for large-scale distributed services here
   and in previous roles, diagnosing and resolving live failures with Prometheus
   and Grafana---debugging experience that informs how I design and instrument
@@ -108,14 +108,15 @@
   {}
   {}
   {
-    Extended travel and time with family following five years at Google.
+    Extended travel and time with family, after ten years of continuous work.
   }
 
 \cvjob{2016--2021}{Site Reliability Engineer}{Google Inc}{Kirkland, WA}
-\cvbullet{Rewrote multiple RTC services---telephony, chat, and video---to
-  safely consume, validate, apply, and monitor live configuration updates from
-  Google's internal configuration management platform, with support for
-  canaries, A/B testing, and automated rollbacks.}
+\cvbullet{Evaluated Google's several internal configuration management
+  platforms and selected the one to build on, then rewrote multiple RTC
+  services---telephony, chat, and video---to safely consume, validate, apply,
+  and monitor its live configuration updates, with support for canaries, A/B
+  testing, and automated rollbacks.}
 \cvbullet{Partnered with 5+ development teams to standardize that configuration
   logic and ensure consistent behavior across heterogeneous systems serving
   100M+ users.}
@@ -134,8 +135,9 @@
 
 \cvjob{2015--2016}{Full Stack Engineer}{Apple Inc}{Cupertino, CA (Remote)}
 \cvbullet{Built internal web applications supporting Apple Maps Transit,
-  including an infinite-scrolling POI data editor that accelerated data-entry
-  workflows ahead of the Apple Transit launch.}
+  including an infinite-scrolling POI data editor and a route metadata editor
+  for ingested transit routes, accelerating data-entry workflows ahead of the
+  Apple Transit launch.}
 \cvbullet{Designed features end to end, from PostgreSQL schema through Scala
   services to the JavaScript UI.}
 \cvbullet{Designed data models and validation workflows enabling rapid editing
@@ -143,34 +145,29 @@
   Optimized queries, schemas, and batch jobs for complex transit data
   relationships.}
 
-\cvjob{2013--2015}{SDE II / Technical Program Manager}{Amazon.com}{Seattle, WA}
-\cvbullet{Designed and built the serving layer over the shipment-level data
-  warehouse: a Scala service exposing fine-grained financial data to systems and
-  teams across Amazon, replacing ad-hoc direct queries against the warehouse.}
-\cvbullet{Led the design and development of a company-wide financial reporting
-  platform on top of that service, generating daily, fine-grained P\&L reports.
-  Gathered requirements from finance and operations stakeholders, pitched
-  alternatives, and set technical direction.}
-\cvbullet{Developed an interactive query service in Scala enabling users without
-  a SQL background to explore daily reporting data directly.}
-\cvbullet{Bootstrapped a new engineering team, shaping roadmap, architecture,
-  and technology-stack decisions, and launched the platform as an AWS
-  cloud-native service---among the first at Amazon to adopt Redshift.}
-
-\cvjob{2011--2013}{Software Development Engineer I \& II}{Amazon.com}{Seattle, WA}
-\cvbullet{Built a shipment-level financial data warehouse from the ground up,
-  extracting from Amazon's Oracle transactional systems and transforming
-  heterogeneous business data into a single per-shipment view through
-  distributed ETL pipelines in Hadoop and SQL.}
+\cvjob{2011--2015}{Software Development Engineer}{Amazon.com}{Seattle, WA}
+\cvbullet{Built the ingestion pipelines behind Amazon's shipment-level sales
+  data: distributed ETL in Hadoop and SQL drawing from Oracle transactional
+  systems and producing a single per-shipment table consumed across the
+  business.}
 \cvbullet{Designed and implemented the allocation and reconciliation algorithms
   at its core, attributing diverse cost and revenue components---liquidations,
   returns, shipping, and promotions---to individual shipments. Partnered with
   finance and operations stakeholders to define heuristics and validate
-  financial correctness for a system used company-wide to drive day-to-day
-  business decisions.}
+  financial correctness.}
 \cvbullet{Extended data coverage to new geographies and business domains,
   including FBA and 3P, and launched the data-processing pipeline for Amazon
   China.}
+\cvbullet{Joined a new team as its second engineer to turn that data into usable
+  reporting: retail P\&L aggregated at multiple levels and reconciled against
+  accounting systems, delivered through a drill-down report portal.}
+\cvbullet{Built an interactive query service in Scala that opened shipment-level
+  data to a far wider audience---until then it was reachable only by writing SQL
+  against the warehouse directly.}
+\cvbullet{Helped bootstrap that team's roadmap, architecture, and
+  technology-stack decisions, and launched the platform as an AWS cloud-native
+  service on Redshift and DynamoDB---among the first at Amazon to adopt
+  Redshift.}
 
 \section{Education}
 
